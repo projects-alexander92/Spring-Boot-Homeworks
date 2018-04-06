@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/bootstrap-fragments:: bootstrapHead}">
+</head>
+<body>
+<div class="container">
+    <th:block th:replace="~{fragments/bootstrap-fragments:: bootstrapNavBar}">
+    </th:block>
+    <div class="row my-2 content-justify-center">
+        <h1>Wrong page or server error</h1>
+    </div>
+    <a class="btn btn-outline-primary btn-block my-4" href="/bikes/all" role="button">Go back</a>
+</div>
+<th:block th:replace="~{fragments/bootstrap-fragments:: bootstrapJS}">
+</th:block>
+</body>
+</html>

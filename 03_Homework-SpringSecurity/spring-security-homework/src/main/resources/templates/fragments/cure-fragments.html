@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<th:block th:fragment="curesTable">
+    <table class="table table-bordered my-2">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Magnitude</th>
+            <th scope="col">Released On</th>
+            <th scope="col">Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="virus: ${viruses}" th:object="${virus}">
+            <td th:text="*{id}"></td>
+            <td th:text="*{name}"></td>
+            <td th:text="*{magnitude}"></td>
+            <td th:text="${#dates.format(virus.getReleasedOn(), 'dd-MMM-yyyy')}"></td>
+            <td><a th:href="@{/cures/delete/{id} (id=*{id})}">Delete</a></td>
+        </tr>
+        </tbody>
+    </table>
+</th:block>
+</body>
+</html>

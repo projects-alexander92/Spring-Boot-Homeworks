@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--Sale select form-->
+<th:block th:fragment="saleDiscountForm">
+    <form method="post" class="my-3">
+        <h3>Select sale by discount</h3>
+        <div class="form-group">
+            <label for="saleDiscount">Pick a discount</label>
+            <input type="number" step="0.01" class="form-control" id="saleDiscount" name="discount">
+        </div>
+        <button type="submit" class="btn btn-block btn-outline-info">Submit</button>
+    </form>
+</th:block>
+<!--Sales Table-->
+<th:block th:fragment="saleTable">
+    <div class="row my-2">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th scope="col">Car make</th>
+                <th scope="col">Customer Name</th>
+                <th scope="col">Discount</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="sale : ${sales}" th:object="${sale}">
+                <td th:text="*{carMake}"></td>
+                <td th:text="*{customerName}"></td>
+                <td th:text="*{discount}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</th:block>
+</body>
+</html>

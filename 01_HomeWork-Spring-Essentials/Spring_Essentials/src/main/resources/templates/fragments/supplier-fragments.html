@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--Suppliers Table-->
+<th:block th:fragment="suppliersTable">
+    <div class="row justify-content-sm-center">
+        <div class="pagination justify-content-center">
+            <a href="/suppliers/local"
+               class="list-group-item list-group-item-action list-group-item-info my-1 text-center">Show
+                Local Suppliers</a>
+            <a href="/suppliers/importers"
+               class="list-group-item list-group-item-action list-group-item-warning my-1 ml-1 mr-1 text-center">Show
+                Importer Suppliers</a>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Number of parts</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="supplier : ${suppliers}" th:object="${supplier}">
+                <td th:text="*{id}"></td>
+                <td th:text="*{name}"></td>
+                <td th:text="*{numberOfParts}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</th:block>
+</body>
+</html>

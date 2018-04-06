@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/bootstrap-fragments:: bootstrapHead}">
+</head>
+<body>
+<div class="container">
+    <th:block th:replace="~{fragments/bootstrap-fragments:: bootstrapNavBar}">
+    </th:block>
+    <div class="row justify-content-sm-center my-2">
+        <img src="http://myjavatrainer.com/wp-content/uploads/2016/06/404-error-e1481802844857.png" alt="nema sminka">
+    </div>
+    <a class="btn btn-outline-primary btn-block my-4" href="/bikes/all" role="button">Go back</a>
+</div>
+<th:block th:replace="~{fragments/bootstrap-fragments:: bootstrapJS}">
+</th:block>
+</body>
+</html>

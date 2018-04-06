@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--Registration Form-->
+<th:block th:fragment="userRegisterForm">
+    <form method="post" th:object="${userRegistrationModel}">
+        <div class="form-group">
+            <label for="username">Name</label>
+            <input type="text" class="form-control" th:classappend="${#fields.hasErrors('username')} ? 'is-invalid'"
+                   th:value="*{username}" th:field="*{username}">
+            <div class="invalid-feedback" th:each="error : ${#fields.errors('username')}" th:text="${error}"></div>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" th:classappend="${#fields.hasErrors('password')} ? 'is-invalid'"
+                   th:value="*{password}" th:field="*{password}">
+            <div class="invalid-feedback" th:each="error : ${#fields.errors('password')}" th:text="${error}"></div>
+        </div>
+        <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" class="form-control" th:value="*{confirmPassword}" th:field="*{confirmPassword}">
+            <span th:if="*{password} != *{confirmPassword}" th:text="'Passwords Do Not match'"
+                  style="color: #dc3545"></span>
+        </div>
+        <div class="form-group">
+            <label for="roleId">Pick a Role</label>
+            <select class="form-control" id="roleId" th:field="*{role}">
+                <option th:each="role : ${roles}" th:value="${role}"
+                        th:text="${#strings.capitalize(#strings.toLowerCase(role))}">
+                </option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-block btn-outline-primary">Register</button>
+    </form>
+</th:block>
+
+<!--Login Form-->
+<th:block th:fragment="userLoginForm">
+    <h1 th:if="${error} != null" th:text="${error}" style="color: #dc3545"></h1>
+    <form method="post">
+        <div class="form-group">
+            <label for="username">Name</label>
+            <input type="text" class="form-control" name="username" id="username">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" name="password" id="password">
+        </div>
+        <div class="custom-control custom-checkbox mb-3">
+            <input type="checkbox" class="custom-control-input" id="rememberMe" name="remember">
+            <label class="custom-control-label" for="rememberMe">Remember Me</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+</th:block>
+
+<!--Users Table-->
+<th:block th:fragment="usersTable">
+    <table class="table table-bordered my-2">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Username</th>
+            <th scope="col">Is Enabled?</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user: ${users}" th:object="${user}">
+            <td th:text="*{id}"></td>
+            <td th:text="*{username}"></td>
+            <td th:text="*{isEnabled}"></td>
+        </tr>
+        </tbody>
+    </table>
+</th:block>
+</body>
+</html>

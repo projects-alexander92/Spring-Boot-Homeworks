@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/bootstrap-fragments:: bootstrapHead}">
+</head>
+<body>
+<div class="container">
+    <th:block th:replace="~{fragments/bootstrap-fragments:: bootstrapNavBar}">
+    </th:block>
+
+    <th:block th:replace="~{fragments/cure-fragments:: curesTable}">
+    </th:block>
+    <th:block th:replace="~{fragments/bootstrap-fragments:: bootstrapJS}">
+    </th:block>
+</div>
+<script th:src="@{/js/dateJs.js}"></script>
+</body>
+</html>

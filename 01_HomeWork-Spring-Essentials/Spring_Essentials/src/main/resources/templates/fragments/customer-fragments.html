@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--the menu-->
+<th:block th:fragment="customerMenu">
+    <div class="row justify-content-sm-center">
+        <div class="pagination justify-content-center">
+            <a href="/customers/all/ascending"
+               class="list-group-item list-group-item-action list-group-item-info my-1 text-center">Show
+                Ascending View</a>
+            <a href="/customers/all/descending"
+               class="list-group-item list-group-item-action list-group-item-warning my-1 ml-1 mr-1 text-center">Show
+                Descending View</a>
+            <a href="/customers/add"
+               class="list-group-item list-group-item-action list-group-item-success my-1 text-center">Add
+                Customer</a>
+        </div>
+    </div>
+</th:block>
+
+<!--table-->
+<th:block th:fragment="customerTable">
+    <div class="row">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Birthday</th>
+                <th scope="col">Is Young Driver</th>
+                <th scope="col">Edit</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="customer : ${customers}" th:object="${customer}">
+                <td th:text="*{name}"></td>
+                <td th:text="*{birthDate}"></td>
+                <td th:text="*{isYoungDriver}"></td>
+                <td><a th:href="@{/customers/edit/{id} (id=*{id})}">Edit</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</th:block>
+
+<!--Customer edit form-->
+<th:block th:fragment="customerEditForm">
+    <form method="post" th:object="${customer}">
+        <h3>Edit customer</h3>
+        <div class="form-group">
+            <label for="customerName">Customer Name</label>
+            <input type="text" class="form-control" id="customerName" th:value="*{name}" th:field="*{name}" required>
+        </div>
+        <div class="form-group">
+            <label for="birthDate">Birth Date</label>
+            <input type="date" class="form-control" id="birthDate" th:value="*{birthDate}" th:field="*{birthDate}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Edit Customer</button>
+    </form>
+</th:block>
+
+<!--Customer add form-->
+<th:block th:fragment="customerAddForm">
+    <form method="post" th:object="${customer}">
+        <h3>Add customer</h3>
+        <div class="form-group">
+            <label for="customerName">Customer Name</label>
+            <input type="text" class="form-control" id="customerName" th:value="*{name}" th:field="*{name}" required>
+        </div>
+        <div class="form-group">
+            <label for="birthDate">Birth Date</label>
+            <input type="date" class="form-control" id="birthDate" th:value="*{birthDate}" th:field="*{birthDate}" required>
+        </div>
+        <button type="submit" class="btn btn-outline-primary btn-block">Add Customer</button>
+    </form>
+</th:block>
+</body>
+</html>

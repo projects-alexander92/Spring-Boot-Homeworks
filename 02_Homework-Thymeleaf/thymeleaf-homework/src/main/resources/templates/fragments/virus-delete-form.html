@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<th:block th:fragment="virusDeleteForm">
+    <div class="row justify-content-sm-center">
+        <form method="post" th:object="${virus}" class="my-1">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Delete Virus</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" th:text=" 'Name: ' + *{name}"></li>
+                    <li class="list-group-item" th:text="'Description: ' + *{description}"></li>
+                    <li class="list-group-item" th:text="'Creator: ' + *{creator}"></li>
+                </ul>
+            </div>
+            <button class="btn btn-block btn-outline-danger my-1" type="submit">Delete Virus</button>
+        </form>
+    </div>
+</th:block>
+</body>
+</html>

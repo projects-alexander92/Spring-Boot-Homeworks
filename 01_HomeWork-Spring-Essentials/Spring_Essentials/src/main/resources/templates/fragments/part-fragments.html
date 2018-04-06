@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--Part table-->
+<th:block th:fragment="partTable">
+    <div class="row justify-content-md-center my-2">
+        <form method="post" class="col-sm-12">
+            <a href="/parts/add" class="btn btn-block btn-warning">Add a new part</a>
+        </form>
+    </div>
+    <div class="row my-2">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Delete</th>
+                <th scope="col">Edit</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="part : ${parts}" th:object="${part}">
+                <td th:text="*{name}"></td>
+                <td th:text="*{price}"></td>
+                <td th:text="*{quantity}"></td>
+                <td><a th:href="@{/parts/delete/{id} (id=*{id})}">Delete</a></td>
+                <td><a th:href="@{/parts/edit/{id} (id=*{id})}">Edit</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</th:block>
+<!--Part Edit Form-->
+<th:block th:fragment="partEditForm">
+    <div class="row justify-content-md-center">
+        <form method="post" th:object="${part}" class="col-md-6">
+            <h3 th:text="'Edit part ' + *{name}"></h3>
+            <div class="form-group">
+                <label for="partPrice">Part price</label>
+                <input type="number" step=".01" class="form-control" id="partPrice" th:value="*{price}"
+                       th:field="*{price}"
+                       required>
+            </div>
+            <div class="form-group">
+                <label for="partQuantity">Quantity</label>
+                <input type="number" class="form-control" id="partQuantity" th:value="*{quantity}"
+                       th:field="*{quantity}" required>
+            </div>
+            <button type="submit" class="btn btn-block btn-outline-primary">Edit Part</button>
+        </form>
+    </div>
+</th:block>
+<!--Part Delete Form-->
+<th:block th:fragment="partDeleteForm">
+    <div class="row justify-content-md-center">
+        <form method="post" th:object="${part}" class="col-md-6">
+            <h3 th:text="'Delete part: ' + *{name}"></h3>
+            <button type="submit" class="btn btn-block btn-outline-primary">Delete Part</button>
+        </form>
+    </div>
+</th:block>
+<!--Part Add Form-->
+<th:block th:fragment="partAddForm">
+    <div class="row justify-content-md-center">
+        <form method="post" th:object="${part}" class="col-md-6">
+
+            <div class="form-group">
+                <label for="partName">Part Name</label>
+                <input type="text" class="form-control" id="partName" th:value="*{name}"
+                       th:field="*{name}"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label for="partPrice">Part price</label>
+                <input type="number" step=".01" class="form-control" id="partPrice" th:value="*{price}"
+                       th:field="*{price}"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label for="partQuantity">Quantity</label>
+                <input type="number" class="form-control" id="partQuantity" th:value="*{quantity}"
+                       th:field="*{quantity}" required>
+            </div>
+
+            <button type="submit" class="btn btn-block btn-outline-primary">Add Part</button>
+        </form>
+    </div>
+</th:block>
+</body>
+</html>

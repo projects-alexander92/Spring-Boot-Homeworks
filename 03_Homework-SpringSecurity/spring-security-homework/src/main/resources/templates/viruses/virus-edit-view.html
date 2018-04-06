@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/bootstrap-fragments:: bootstrapHead}">
+</head>
+<body>
+<div class="container">
+    <th:block th:replace="~{fragments/bootstrap-fragments:: bootstrapNavBar}">
+    </th:block>
+    <th:block th:replace="~{fragments/virus-edit-form:: virusEditForm}">
+    </th:block>
+</div>
+<th:block th:replace="~{fragments/bootstrap-fragments:: bootstrapJS}">
+</th:block>
+<script th:src="@{/js/dateJs.js}"></script>
+</body>
+</html>
